@@ -1,0 +1,42 @@
+O que é HTTP?
+O HTTP (HyperText Transfer Protocol) é um protocolo de comunicação usado na web para troca de informações entre um cliente (como um navegador) e um servidor. Ele segue um modelo request-response (requisição-resposta), onde o cliente envia uma requisição ao servidor, e o servidor responde com os dados solicitados.
+
+Explicação do Código
+Node.js usando o módulo http. Vamos entender cada parte:
+
+Importação do módulo HTTP
+
+    var http = require('http');
+    O Node.js já possui um módulo nativo chamado http, que permite criar servidores web.
+
+Criação do servidor
+
+    http.createServer(function(req, res){
+        res.end("olá mundo")
+    }).listen(8081);
+    A função http.createServer() cria um servidor que escuta requisições HTTP.
+    A função callback recebe dois parâmetros:
+    req (requisição): contém informações da solicitação feita pelo cliente.
+    res (resposta): é usado para enviar uma resposta ao cliente.
+    O res.end("olá mundo") envia a resposta "olá mundo" para quem acessar o servidor.
+    .listen(8081) faz o servidor escutar na porta 8081.
+    Mensagem no console
+
+    console.log("o servidor está rodando");
+    Isso exibe no terminal a mensagem "o servidor está rodando" para indicar que o servidor foi iniciado com sucesso.
+
+Testando o Servidor ex
+Salve o código como server.js.
+No terminal, execute:
+nginx
+
+node server.js
+Abra um navegador e acesse:
+
+http://localhost:8081
+Você verá a mensagem "olá mundo" no navegador.
+
+Resumo
+O HTTP é um protocolo usado para comunicação entre cliente e servidor.
+Você criou um servidor simples em Node.js que responde com "olá mundo".
+O servidor escuta requisições na porta 8081.

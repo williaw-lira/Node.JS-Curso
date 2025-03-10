@@ -1,0 +1,51 @@
+o Resumo sobre module.exports e require no Node.js
+No Node.js, o sistema de módulos permite dividir o código em arquivos reutilizáveis. Para isso, usamos module.exports e require.
+
+1. module.exports
+Ele é usado para exportar funções, objetos ou valores de um arquivo para serem usados em outro.
+
+Exemplo de exportação de uma função:
+
+
+        // arquivo: somar.js
+        function somar(a, b) {
+            return a + b;
+        }
+
+        module.exports = somar;
+        Aqui, estamos exportando a função somar.
+
+
+2. require
+Ele é usado para importar um módulo em outro arquivo.
+
+Exemplo de importação do arquivo anterior:
+
+
+        // arquivo: calculadora.js
+        const somar = require('./somar');
+
+        console.log(somar(5, 3)); // Saída: 8
+        O require('./somar') importa a função somar do arquivo somar.js.
+
+        Exportando um objeto inteiro
+        Você pode exportar múltiplas funções ou valores como um objeto:
+
+
+            // arquivo: operacoes.js
+            module.exports = {
+                somar: (a, b) => a + b,
+                subtrair: (a, b) => a - b
+            };
+            Agora, no outro arquivo:
+
+            // arquivo: app.js
+            const operacoes = require('./operacoes');
+
+            console.log(operacoes.somar(10, 5)); // 15
+            console.log(operacoes.subtrair(10, 5)); // 5
+
+
+Resumo Rápido
+module.exports → Exporta funções, objetos ou valores para outros arquivos.
+require → Importa módulos para serem usados no código.

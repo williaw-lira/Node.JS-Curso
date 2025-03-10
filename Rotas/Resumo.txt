@@ -1,0 +1,51 @@
+Explicação do Código
+Importando o Express
+
+
+    const express = require('express');
+    O Express é um framework para Node.js que facilita a criação de servidores e APIs.
+
+Criando a aplicação Express
+
+    const app = express();
+    Aqui, a variável app recebe todas as funcionalidades do Express.
+
+Criando rotas
+
+Rota principal (/)
+
+
+    app.get("/", function(req, res){ 
+        res.send("Server online");
+    });
+
+O app.get() cria uma rota que responde a requisições GET.
+O primeiro parâmetro é o caminho ("/").
+A função de callback recebe req (requisição) e res (resposta).
+res.send("Server online") envia essa mensagem ao cliente.
+
+Outras rotas
+
+    app.get("/contato", function(req, res){
+        res.send("contato");
+    });
+
+    app.get("/produtos", function(req, res){
+        res.send("produtos disponíveis:");
+    });
+
+//Criamos rotas /contato e /produtos para diferentes páginas.
+
+Iniciando o servidor
+
+    app.listen(10110, function(){
+        console.log("Servidor rodando na URL http://localhost:10110");
+    });
+    
+O app.listen(10110) faz o servidor escutar na porta 10110.
+O console exibe uma mensagem indicando que o servidor está rodando.
+Resumo
+✅ O Express facilita a criação de servidores.
+✅ Rotas definem como o servidor responde a diferentes URLs.
+✅ O app.get() é usado para criar caminhos que retornam respostas ao cliente.
+✅ Com Express, não precisamos criar manualmente um servidor HTTP.
