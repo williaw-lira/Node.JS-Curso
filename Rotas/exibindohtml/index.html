@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tic toc</title>
+    <script src="https://cdn.tailwindcss.com" src="server.js"></script>
+    <style>
+        .hover-card:hover {
+        transform: translateY(-10px) rotate(3deg);
+        transition: transform 0.3s ease-in-out;
+        }
+        .shape {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        opacity: 0.5;
+        transition: transform 0.3s ease-in-out;
+        }
+        .circle { border-radius: 50%; background: rgba(255, 255, 255, 0.2); }
+        .square { background: rgba(255, 255, 255, 0.2); }
+        .triangle {
+        width: 0;
+        height: 0;
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        border-bottom: 50px solid rgba(255, 255, 255, 0.2);
+        }
+        body:hover .shape {
+        transform: translateY(-10px) rotate(5deg);
+        }
+        .scroll-animation {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease-in-out;
+        }
+        .fade-in {
+        opacity: 1;
+        transform: translateY(0);
+        }
+        .tic-tac-toe {
+        display: grid;
+        grid-template-columns: repeat(3, 100px);
+        grid-template-rows: repeat(3, 100px);
+        gap: 5px;
+        margin-top: 50px;
+        }
+        .cell {
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #1f2937;
+        color: white;
+        font-size: 2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s ease-in-out;
+        }
+        .cell:hover {
+        background: #374151;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 flex flex-col items-center justify-start min-h-screen relative py-20">
+    <div class="absolute inset-0">
+        <div class="shape circle" style="top: 10%; left: 20%;"></div>
+        <div class="shape square" style="top: 50%; left: 70%;"></div>
+        <div class="shape triangle" style="top: 80%; left: 40%;"></div>
+    </div>
+    
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-6 relative z-10 mt-10">
+        <div class="hover-card bg-blue-500 text-white p-8 rounded-lg shadow-lg cursor-pointer">Bloco 1</div>
+        <div class="hover-card bg-green-500 text-white p-8 rounded-lg shadow-lg cursor-pointer">Bloco 2</div>
+        <div class="hover-card bg-red-500 text-white p-8 rounded-lg shadow-lg cursor-pointer">Bloco 3</div>
+        <div class="hover-card bg-purple-500 text-white p-8 rounded-lg shadow-lg cursor-pointer">Bloco 4</div>
+        <div class="hover-card bg-yellow-500 text-white p-8 rounded-lg shadow-lg cursor-pointer">Bloco 5</div>
+        <div class="hover-card bg-pink-500 text-white p-8 rounded-lg shadow-lg cursor-pointer">Bloco 6</div>
+    </div>
+    
+    <div class="mt-20 w-full max-w-4xl p-10 bg-gray-800 text-white rounded-lg shadow-lg text-center scroll-animation">
+        <h2 class="text-3xl font-bold">Seção Tic Toc</h2>
+        <p class="mt-4">jogo da velha.</p>
+    </div>
+    
+    <!-- Jogo da Velha -->
+    <div class="tic-tac-toe relative z-10">
+        <div class="cell" onclick="markCell(this)"></div>
+        <div class="cell" onclick="markCell(this)"></div>
+        <div class="cell" onclick="markCell(this)"></div>
+        <div class="cell" onclick="markCell(this)"></div>
+        <div class="cell" onclick="markCell(this)"></div>
+        <div class="cell" onclick="markCell(this)"></div>
+        <div class="cell" onclick="markCell(this)"></div>
+        <div class="cell" onclick="markCell(this)"></div>
+        <div class="cell" onclick="markCell(this)"></div>
+    </div>
+    
+    <!-- Mensagem de Vitória -->
+    <div id="winner-message" class="mt-4 text-2xl font-bold text-white"></div>
+    
+    <!-- Botão de Reset -->
+    <button class="mt-4 bg-blue-500 text-white px-4 py-2 rounded" onclick="resetGame()">Resetar Jogo</button>
+    
+<script>
+        // Animação ao rolar a página
+        document.addEventListener("scroll", function() {
+        const elements = document.querySelectorAll(".scroll-animation");
+        elements.forEach(el => {
+            if (el.getBoundingClientRect().top < window.innerHeight - 50) {
+            el.classList.add("fade-in");
+            }
+        });
+        });
+        
+        // Função do Jogo da Velha
+        let turn = 'X';
+        let gameOver = false;
+        
+        function markCell(cell) {
+        if (cell.innerHTML === '' && !gameOver) {
+            cell.innerHTML = turn;
+            if (checkWin(turn)) {
+            document.getElementById('winner-message').innerText = turn + ' ganhou!';
+            gameOver = true;
+            return;
+            }
+            turn = turn === 'X' ? 'O' : 'X';
+        }
+        }
+        
+        function checkWin(player) {
+        const cells = document.querySelectorAll('.cell');
+        const combos = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // Linhas
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // Colunas
+            [0, 4, 8], [2, 4, 6]            // Diagonais
+        ];
+        return combos.some(combo => {
+            return combo.every(index => {
+            return cells[index].innerHTML === player;
+            });
+        });
+        }
+        
+        function resetGame() {
+        const cells = document.querySelectorAll('.cell');
+        cells.forEach(cell => cell.innerHTML = '');
+        turn = 'X';
+        gameOver = false;
+        document.getElementById('winner-message').innerText = '';
+        }
+</script>
+</body>
+</html>

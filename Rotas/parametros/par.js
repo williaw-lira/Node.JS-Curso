@@ -5,7 +5,7 @@ app.get("/rota", function(req,res){
     res.send("voce criou uma rota")
 })
 
-app.get("/par/:nome", function(req,res){
+app.get("/par", function(req,res){
     res.send("voce criou um parametro")
 
 })
@@ -18,6 +18,6 @@ app.get("/t/:nome", function(req,res){
 })
 
 
-app.listen(2030, function(){
+app.listen(2050, function(){
     console.log("servidor rodando")
 })
