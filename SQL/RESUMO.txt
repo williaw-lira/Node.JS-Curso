@@ -1,0 +1,62 @@
+📌 Gerenciamento de Bancos de Dados
+SHOW DATABASES; → Lista todos os bancos de dados existentes no servidor.
+
+CREATE DATABASE nome_do_banco; → Cria um novo banco de dados.
+
+USE nome_do_banco; → Seleciona um banco de dados para ser utilizado.
+
+
+📌 Gerenciamento de Tabelas
+SHOW TABLES; → Lista todas as tabelas dentro do banco de dados selecionado.
+
+CREATE TABLE nome_da_tabela (...); → Cria uma nova tabela dentro do banco de dados.
+
+DESCRIBE nome_da_tabela; → Mostra a estrutura da tabela (colunas, tipos de dados, chaves, etc.).
+
+
+📌 SELECT * FROM
+
+SELECT * FROM nome_da_tabela;
+Explicação:
+
+SELECT → Usado para buscar dados de uma tabela.
+* → Significa "todas as colunas", ou seja, retorna todos os dados da tabela.
+FROM nome_da_tabela → Define de qual tabela os dados serão buscados.
+✅ Exemplo:
+Se tivermos uma tabela clientes, podemos buscar todos os registros assim:
+
+
+SELECT * FROM clientes;
+Isso retornará todas as colunas e todas as linhas da tabela.
+
+📌 INSERT INTO ... VALUES
+
+INSERT INTO nome_da_tabela (coluna1, coluna2, coluna3)  
+VALUES (valor1, valor2, valor3);
+Explicação:
+
+INSERT INTO → Comando para inserir dados em uma tabela.
+(coluna1, coluna2, coluna3) → Define em quais colunas os valores serão inseridos.
+VALUES (valor1, valor2, valor3) → Define os valores a serem inseridos.
+✅ Exemplo:
+Inserindo um cliente na tabela clientes:
+
+
+INSERT INTO clientes (nome, email, idade)  
+VALUES ('João Silva', 'joao@email.com', 30);
+Isso adiciona um novo cliente na tabela.
+
+📌 WHERE
+
+SELECT * FROM nome_da_tabela WHERE condição;
+Explicação:
+
+WHERE → Filtra os dados retornados de acordo com uma condição específica.
+✅ Exemplo:
+Selecionar clientes com idade maior que 25:
+
+
+SELECT * FROM clientes WHERE idade > 25;
+Isso retornará apenas os clientes que têm mais de 25 anos.
+
+📌 Também pode ser usado com INSERT, UPDATE e DELETE para filtrar quais registros serão afetados.
