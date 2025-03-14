@@ -1,0 +1,107 @@
+📌 Gerenciamento de Bancos de Dados
+
+-Listar Bancos de Dados:
+SHOW DATABASES;
+
+Lista todos os bancos de dados existentes no servidor.
+
+
+-Criar um Banco de Dados:
+CREATE DATABASE nome_do_banco;
+
+Cria um novo banco de dados.
+
+
+-Selecionar um Banco de Dados:
+USE nome_do_banco;
+
+Seleciona o banco de dados para as operações seguintes.
+
+
+-Deletar um Banco de Dados:
+DROP DATABASE sistemacadastro;
+
+Remove permanentemente o banco de dados sistemacadastro e todos os seus dados.
+Atenção: Esse comando é irreversível sem um backup.
+
+
+
+📌 Gerenciamento de Tabelas
+
+-Listar Tabelas:
+SHOW TABLES;
+
+Lista todas as tabelas do banco de dados selecionado.
+
+
+-Criar uma Tabela:
+CREATE TABLE nome_da_tabela (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    coluna1 VARCHAR(50),
+    coluna2 INT
+);
+
+Cria uma nova tabela com as colunas definidas.
+
+
+-Descrever a Estrutura de uma Tabela:
+DESCRIBE nome_da_tabela;
+
+Mostra a estrutura da tabela, incluindo colunas, tipos de dados, chaves, etc.
+
+
+📌 Operações de Manipulação de Dados
+
+-Selecionar Dados:
+SELECT * FROM clientes;
+
+Busca e retorna todas as colunas e registros da tabela clientes.
+
+
+-Inserir Dados:
+INSERT INTO clientes (nome, email, idade)
+VALUES ('João Silva', 'joao@email.com', 30);
+
+Insere um novo registro na tabela clientes.
+
+
+-Atualizar Dados:
+UPDATE usuarios
+SET nome = "nome teste", email = "teste.com"
+WHERE nome = "william";
+
+Atualiza os registros da tabela usuarios onde o nome seja "william".
+
+
+-Excluir Dados com Condição:
+DELETE FROM clientes
+WHERE idade < 18;
+
+Exclui os registros da tabela clientes onde a idade seja menor que 18.
+
+
+
+📌 Uso da Cláusula WHERE
+
+
+IMPORTANTE:
+Ao utilizar comandos como DELETE ou UPDATE, sempre inclua a cláusula WHERE para garantir que apenas os registros desejados sejam afetados.
+
+Exemplo de DELETE sem WHERE (CUIDADO!):
+
+
+DELETE FROM clientes;
+Este comando remove todos os registros da tabela clientes.
+
+Exemplo de UPDATE sem WHERE (CUIDADO!):
+
+
+UPDATE usuarios
+SET nome = "novo nome", email = "novoemail@exemplo.com";
+Este comando atualiza todos os registros da tabela usuarios, o que pode levar a alterações indesejadas.
+
+Boas Práticas:
+
+Sempre utilizar a cláusula WHERE nos comandos que alteram ou removem dados para evitar ações em massa.
+Realizar backups regularmente antes de executar operações destrutivas.
+Testar os comandos em um ambiente de desenvolvimento para confirmar que somente os registros desejados serão afetados.
