@@ -1,0 +1,31 @@
+A seguir, um resumo do conteúdo:
+
+Instalação dos pacotes necessários:
+
+- cmd line mysql
+Utiliza o comando para instalar o Sequelize.
+npm install --save sequelize 
+
+É necessário instalar também o driver para MySQL, usando algo como 
+npm install --save mysql2.
+
+Configuração da conexão:
+
+Importa o Sequelize e cria uma instância passando os parâmetros do banco:
+Nome do banco de dados: test
+Usuário: root
+Senha: senha...
+Host: localhost
+Dialect: mysql
+Testando a conexão:
+
+O método authenticate()
+é chamado para verificar se a conexão foi estabelecida com sucesso.
+Em caso de sucesso, o console exibe "conectado com sucesso"; se houver erro, ele exibe "falha ao se conectar" seguido do erro.
+Execução com Nodemon:
+
+O comando 
+nodemon conectando.js
+ 
+foi utilizado para executar o script, que reinicia automaticamente ao detectar alterações.
+Este resumo explica como instalar os pacotes do Sequelize e do MySQL, configurar uma conexão com o banco de dados e testar essa conexão.
